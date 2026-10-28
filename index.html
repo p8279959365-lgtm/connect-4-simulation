@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect Four AI | AISC Project</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">4</div>
+        <div>
+          <p class="eyebrow">AISC PROJECT · GAME SIMULATION</p>
+          <h1>Connect Four <span>AI</span></h1>
+        </div>
+      </div>
+      <div class="status-pill"><span class="status-dot"></span> HEURISTIC ENGINE ACTIVE</div>
+    </header>
+
+    <section class="intro">
+      <div>
+        <p class="eyebrow">HUMAN VS MACHINE</p>
+        <h2>Make your move.<br><span>Challenge the algorithm.</span></h2>
+        <p class="intro-copy">A classic strategy game powered by a rule-based heuristic evaluation function — no Minimax search.</p>
+      </div>
+      <div class="turn-card">
+        <div class="turn-icon" id="turnIcon">●</div>
+        <div>
+          <p class="turn-label" id="turnLabel">YOUR TURN</p>
+          <p class="turn-player" id="turnPlayer">Red player</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="game-layout">
+      <div class="board-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">LIVE MATCH</p>
+            <h3>Game board</h3>
+          </div>
+          <span class="board-size">6 ROWS × 7 COLUMNS</span>
+        </div>
+        <div class="column-controls" id="columnControls" aria-label="Choose a column"></div>
+        <div class="board" id="board" role="grid" aria-label="Connect Four game board"></div>
+        <div class="board-footer">
+          <span><i class="legend-disc red"></i>You · Red</span>
+          <span><i class="legend-disc yellow"></i>AI · Yellow</span>
+          <span id="moveCount">0 moves</span>
+        </div>
+        <div class="game-actions">
+          <button class="primary-button" id="newGameBtn">↻ New game</button>
+          <button class="secondary-button" id="undoBtn">↶ Undo last turn</button>
+        </div>
+      </div>
+
+      <aside class="side-column">
+        <section class="info-card score-card">
+          <div class="panel-heading compact">
+            <div><p class="eyebrow">MATCH STATS</p><h3>Scoreboard</h3></div>
+            <span class="live-tag">LIVE</span>
+          </div>
+          <div class="score-grid">
+            <div class="score-box">
+              <div class="score-disc red"></div>
+              <p>You · Red</p>
+              <strong id="humanScore">0</strong>
+              <small>WINS</small>
+            </div>
+            <div class="score-box">
+              <div class="score-disc yellow"></div>
+              <p>AI · Yellow</p>
+              <strong id="aiScore">0</strong>
+              <small>WINS</small>
+            </div>
+            <div class="score-box draws">
+              <p>Draws</p><strong id="drawScore">0</strong><small>MATCHES</small>
+            </div>
+          </div>
+        </section>
+
+        <section class="info-card ai-card">
+          <div class="panel-heading compact">
+            <div><p class="eyebrow">DECISION SUPPORT</p><h3>AI move analysis</h3></div>
+            <div class="brain-icon">✳</div>
+          </div>
+          <div class="analysis-callout">
+            <span class="analysis-spark">✦</span>
+            <p id="aiReason">I will evaluate legal columns, look for immediate wins, block immediate threats, and score promising patterns.</p>
+          </div>
+          <div class="chosen-move">
+            <div><span class="muted-label">LAST AI MOVE</span><strong id="lastMove">—</strong></div>
+            <div class="move-score"><span class="muted-label">HEURISTIC SCORE</span><strong id="lastScore">—</strong></div>
+          </div>
+          <p class="small-note">The score estimates the current board's promise. The AI does not search a full game tree.</p>
+        </section>
+
+        <section class="info-card history-card">
+          <div class="panel-heading compact">
+            <div><p class="eyebrow">TURN TRACKER</p><h3>Move history</h3></div>
+            <span class="history-count" id="historyCount">0</span>
+          </div>
+          <ol id="moveHistory" class="move-history"><li class="empty-history">Moves will appear here.</li></ol>
+        </section>
+      </aside>
+    </section>
+
+    <section class="method-panel">
+      <div class="method-title">
+        <div class="method-symbol">ƒ</div>
+        <div><p class="eyebrow">UNDER THE HOOD</p><h3>How the heuristic works</h3></div>
+      </div>
+      <div class="method-steps">
+        <article><span>01</span><h4>Generate legal moves</h4><p>Find columns that still have an empty slot.</p></article>
+        <article><span>02</span><h4>Check immediate wins</h4><p>Prefer a move that connects four AI discs.</p></article>
+        <article><span>03</span><h4>Block threats</h4><p>Penalize moves that let the opponent win next.</p></article>
+        <article><span>04</span><h4>Score patterns</h4><p>Reward center control and windows with two or three AI discs.</p></article>
+      </div>
+      <div class="formula"><strong>Heuristic:</strong> win / threat safety + pattern score + center preference</div>
+    </section>
+    <footer>CONNECT FOUR AI · ARTIFICIAL INTELLIGENCE & SOFT COMPUTING · HTML / CSS / JAVASCRIPT</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
